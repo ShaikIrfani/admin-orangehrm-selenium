@@ -1,0 +1,26 @@
+# Java
+*.class
+
+# Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Test reports
+test-output/
+reports/
+
+# Screenshots
+screenshots/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
