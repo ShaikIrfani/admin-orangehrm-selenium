@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,11 +23,24 @@ public class ProjectWrappers extends GenericWrappers {
 	public void launchBrowser(String browser) {
 
 		switch (browser.toLowerCase()) {
-		case "chrome":
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-			break;
-		case "firefox":
+
+	    case "chrome":
+	        WebDriverManager.chromedriver().setup();
+
+	        ChromeOptions options = new ChromeOptions();
+
+	        if (config.isHeadless()) {
+	            options.addArguments("--headless=new");
+	            options.addArguments("--no-sandbox");
+	            options.addArguments("--disable-dev-shm-usage");
+	            options.addArguments("--window-size=1920,1080");
+	        }
+
+	        driver = new ChromeDriver(options);
+	        break;
+
+	        		
+	        case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
