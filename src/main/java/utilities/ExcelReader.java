@@ -18,6 +18,13 @@ public class ExcelReader {
 		
 		FileInputStream fis =new FileInputStream(path);
 		Workbook workbook= new XSSFWorkbook(fis);
+		System.out.println("Excel file: " + path);
+		System.out.println("Available sheets:");
+
+		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+		    System.out.println("Sheet " + i + ": [" 
+		            + workbook.getSheetName(i) + "]");
+		}
 		Sheet sheet =  workbook.getSheet(sheetName);
 		int rowCount= sheet.getLastRowNum();
 		int columnCount= sheet.getRow(0).getLastCellNum();
@@ -30,10 +37,13 @@ public class ExcelReader {
 
             for (int j = 0; j < columnCount; j++) {
 
-                Cell cell = row.getCell(j);
+            	Cell cell = row.getCell(j);
 
-                data[i - 1][j] = cell.toString();
-
+            	if (cell == null) {
+            	    data[i - 1][j] = "";
+            	} else {
+            	    data[i - 1][j] = cell.toString();
+            	}
             }
         }
 

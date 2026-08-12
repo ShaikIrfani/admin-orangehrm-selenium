@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import utilities.ConfigReader;
 
 
@@ -24,28 +24,27 @@ public class ProjectWrappers extends GenericWrappers {
 
 		switch (browser.toLowerCase()) {
 
-	    case "chrome":
-	        WebDriverManager.chromedriver().setup();
+		case "chrome":
 
-	        ChromeOptions options = new ChromeOptions();
+		    ChromeOptions options = new ChromeOptions();
 
-	        if (config.isHeadless()) {
-	            options.addArguments("--headless=new");
-	            options.addArguments("--no-sandbox");
-	            options.addArguments("--disable-dev-shm-usage");
-	            options.addArguments("--window-size=1920,1080");
-	        }
+		    if (config.isHeadless()) {
+		        options.addArguments("--headless=new");
+		        options.addArguments("--no-sandbox");
+		        options.addArguments("--disable-dev-shm-usage");
+		        options.addArguments("--window-size=1920,1080");
+		    }
 
-	        driver = new ChromeDriver(options);
-	        break;
+		    driver = new ChromeDriver(options);
+		    break;
 
 	        		
 	        case "firefox":
-			WebDriverManager.firefoxdriver().setup();
+			//WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
 		case "edge":
-			WebDriverManager.edgedriver().setup();
+			//WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 			break;
 		default:
